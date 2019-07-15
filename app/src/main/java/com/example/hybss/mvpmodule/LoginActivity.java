@@ -1,6 +1,7 @@
 package com.example.hybss.mvpmodule;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.mvp_base_library.view.base.BaseActivity;
+import com.example.mvp_without_activity_library.view.SampleActivity;
 
 public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements Contract.ILoginView {
     private EditText et_username, et_password;
@@ -44,7 +46,8 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl> implements C
 
     @Override
     public void showTip(boolean isSuccess) {
-        Toast.makeText(getSelfActivity(), "this is " + isSuccess, Toast.LENGTH_LONG).show();
+//        Toast.makeText(getSelfActivity(), "this is " + isSuccess, Toast.LENGTH_LONG).show();
+        startActivity(new Intent(this, SampleActivity.class));
     }
 
     @Override
