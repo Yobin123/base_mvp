@@ -13,7 +13,8 @@ import com.example.mvp_without_activity_library.view.base.BaseActivity;
 
 
 /**
- * 一般activity，如果是已经存在的项目为了解决
+ * 一般activity，如果是已经存在的项目,为了适应相应的baseActivity，没有了基类的泛型处理，
+ * 但是在防止内存泄漏需要在destroy方法中调用视图分离
  */
 public class SampleActivity extends BaseActivity implements SampleContracts.ISampleView {
     Button button;
