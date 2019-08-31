@@ -8,18 +8,22 @@ import android.view.View;
 
 import com.example.mvp_without_activity_library.utils.ActivityCollector;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 
 /**
  * 普通Activity继承该基础类，这样就不用修改已有项目基类
  */
 public abstract class BaseActivity extends FragmentActivity implements View.OnClickListener {
-
+    Unbinder unbinder;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         ActivityCollector.addActivity(this); //收集相应的activity
         if (0 != onLayout()) {
             setContentView(onLayout());
+            unbinder = ButterKnife.bind(this);
             initView();
             addListener();
             setControl();
@@ -31,7 +35,9 @@ public abstract class BaseActivity extends FragmentActivity implements View.OnCl
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        
+        if(unbinder != null){
+            unbinder.unbind();
+        }
         ActivityCollector.removeActivity(this);
     }
 

@@ -68,7 +68,7 @@ public abstract class BaseRecyclerViewAdapter<T> extends RecyclerView.Adapter<Ba
     /**
      * 封装ViewHolder
      */
-    public class BaseViewHolder extends RecyclerView.ViewHolder {
+    public static class BaseViewHolder extends RecyclerView.ViewHolder {
         private Map<Integer, View> mViewMap;
 
         public BaseViewHolder(@NonNull View view) {

@@ -10,6 +10,9 @@ import com.example.mvp_base_library.presenter.IPresenter;
 import com.example.mvp_base_library.utils.ActivityCollector;
 import com.example.mvp_base_library.view.IView;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 
 /**
  * 所有的Activity应该继承该基础类
@@ -18,7 +21,7 @@ import com.example.mvp_base_library.view.IView;
  */
 public abstract class BaseActivity<P extends IPresenter> extends FragmentActivity implements IView, View.OnClickListener {
     protected P mvpPre;
-
+    Unbinder unbinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,6 +30,7 @@ public abstract class BaseActivity<P extends IPresenter> extends FragmentActivit
         ActivityCollector.addActivity(this); //收集相应的activity
         if (0 != onLayout()) {
             setContentView(onLayout());
+            unbinder =  ButterKnife.bind(this);
             initView();
             addListener();
             setControl();
@@ -47,6 +51,9 @@ public abstract class BaseActivity<P extends IPresenter> extends FragmentActivit
          */
         if (mvpPre != null) {
             mvpPre.detachView();
+        }
+        if(unbinder != null){
+            unbinder.unbind();
         }
         ActivityCollector.removeActivity(this);
     }

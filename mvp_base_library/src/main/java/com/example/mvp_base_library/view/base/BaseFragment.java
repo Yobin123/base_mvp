@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import com.example.mvp_base_library.presenter.IPresenter;
 import com.example.mvp_base_library.view.IView;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 
 /**
  * 所有的fragment应该继承该基础类
@@ -20,6 +23,7 @@ import com.example.mvp_base_library.view.IView;
  */
 public abstract class BaseFragment<P extends IPresenter> extends Fragment implements IView, View.OnClickListener {
     protected P mvpPre;
+    Unbinder unbinder;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,6 +35,7 @@ public abstract class BaseFragment<P extends IPresenter> extends Fragment implem
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(onLayout(), container, false);
+        unbinder = ButterKnife.bind(this,view);
         initView(view);
         return view;
     }
@@ -50,6 +55,13 @@ public abstract class BaseFragment<P extends IPresenter> extends Fragment implem
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(unbinder != null)
+            unbinder.unbind();
     }
 
     @Override
