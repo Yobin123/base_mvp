@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/xrefreshview_footer_content"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:layout_gravity="center_horizontal"
+    android:background="@android:color/transparent"
+    android:padding="10dp">
+
+    <ProgressBar
+        android:id="@+id/xrefreshview_footer_progressbar"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:indeterminateTint="@color/blue_00"
+        android:padding="10dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/xrefreshview_footer_hint_textview"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="加载完成"
+        android:textColor="@color/blue_00" />
+
+    <TextView
+        android:id="@+id/xrefreshview_footer_click_textview"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="松开加载更多"
+        android:textColor="@color/blue_00" />
+</RelativeLayout>

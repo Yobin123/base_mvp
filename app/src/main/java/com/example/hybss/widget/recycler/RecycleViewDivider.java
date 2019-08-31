@@ -1,4 +1,4 @@
-package com.example.hybss.viewhelper.recycler;
+package com.example.hybss.widget.recycler;
 
 import android.content.Context;
 import android.graphics.Bitmap;

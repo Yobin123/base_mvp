@@ -7,4 +7,37 @@
     <color name="black_48">#484A54</color>
     <color name="gray_f3">#f3f3f3</color>
     <color name="blue_00">#0066ff</color>
+
+
+    <!--头部-->
+    <!--标题颜色-->
+    <color name="title_bar_color">@color/color_white</color>
+    <!--副标题颜色-->
+    <color name="subtitle_bar_color">@color/color_white</color>
+    <!--标题栏背景-->
+    <color name="title_bar_bg">@color/colorPrimary</color>
+
+
+    <!--正文文本-->
+    <!--标题类颜色-->
+    <color name="txt_title_color">@color/black_48</color>
+    <!--副标题颜色-->
+    <color name="txt_subtitle_color">@color/black_48</color>
+    <!--正文文本颜色-->
+    <color name="txt_text_color">@color/gray_80</color>
+    <!--文本间隔线的颜色-->
+    <color name="txt_divider_color">@color/gray_f9</color>
+    <!--屏幕背景颜色-->
+    <color name="screen_bg_color">@color/gray_f9</color>
+
+
+    <!--一般颜色对应的颜色值-->
+    <color name="color_white">@android:color/white</color>
+    <color name="color_red">@android:color/holo_red_dark</color>
+
+    <color name="black_48">#484A54</color>
+
+    <color name="gray_80">#808080</color>
+    <color name="gray_f9">#f9f9f9</color>
+    <color name="blue_00">#0066FF</color>
 </resources>
