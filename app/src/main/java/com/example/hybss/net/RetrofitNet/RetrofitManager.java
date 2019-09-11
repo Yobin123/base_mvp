@@ -1,7 +1,8 @@
 package com.example.hybss.net.RetrofitNet;
 
-import com.huawenpicture.eims.base.MyApplication;
-import com.huawenpicture.eims.constants.CommonConstant;
+import com.example.hybss.base.MyApplication;
+import com.example.hybss.constants.Constant;
+
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -67,7 +68,7 @@ public class RetrofitManager {
      */
     private void initRetrofit() {
         mRetrofit = new Retrofit.Builder()
-                .baseUrl(CommonConstant.BASE_URL)
+                .baseUrl(Constant.BASE_URL)
                 .addConverterFactory(CustomGsonFactory.create())
 //                .addConverterFactory(ResponseConvert.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -86,7 +87,7 @@ public class RetrofitManager {
         HeaderParamsInterceptor commonParamsInterceptor = new HeaderParamsInterceptor();
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
         //关联相应的拦截器
-        interceptor.setLevel(CommonConstant.IS_DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
+        interceptor.setLevel(Constant.DEBUG ? HttpLoggingInterceptor.Level.BODY : HttpLoggingInterceptor.Level.NONE);
         //同时可以添加统一参数
         if (mOkhttpClient == null) {
             synchronized ((RetrofitManager.class)) {

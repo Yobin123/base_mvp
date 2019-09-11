@@ -1,6 +1,6 @@
 package com.example.hybss.net.RetrofitNet;
 
-import com.huawenpicture.eims.utils.GsonUtil;
+import com.example.hybss.utils.GsonUtil;
 
 import java.io.IOException;
 
