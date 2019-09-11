@@ -7,6 +7,9 @@ import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
+import com.google.gson.TypeAdapter;
+import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 
 import java.io.IOException;
 import java.lang.annotation.Annotation;
@@ -16,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
@@ -25,8 +29,27 @@ import retrofit2.Retrofit;
  */
 public class ResponseConvert extends Converter.Factory {
 
+    private final Gson gson;
+
     public static ResponseConvert create() {
-        return new ResponseConvert();
+        return create(new Gson());
+    }
+
+    public static ResponseConvert create(Gson gson) {
+        if (gson == null) throw new NullPointerException("gson == null");
+        return new ResponseConvert(gson);
+    }
+
+    private ResponseConvert(Gson gson) {
+        this.gson = gson;
+    }
+
+
+    @Override
+    public Converter<?, RequestBody> requestBodyConverter(Type type,
+                                                          Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
+        TypeAdapter<?> adapter = gson.getAdapter(TypeToken.get(type));
+        return (Converter<?, RequestBody>) new GsonResponseBodyConverter<>(gson, adapter);
     }
 
     /**
@@ -36,6 +59,28 @@ public class ResponseConvert extends Converter.Factory {
     public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
         return new BodyConverter<>(type);
     }
+
+    //请求转换工厂
+    private class GsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
+        private final Gson gson;
+        private final TypeAdapter<T> adapter;
+
+        GsonResponseBodyConverter(Gson gson, TypeAdapter<T> adapter) {
+            this.gson = gson;
+            this.adapter = adapter;
+        }
+
+        @Override
+        public T convert(ResponseBody value) throws IOException {
+            JsonReader jsonReader = gson.newJsonReader(value.charStream());
+            try {
+                return adapter.read(jsonReader);
+            } finally {
+                value.close();
+            }
+        }
+    }
+
 
     private class BodyConverter<T> implements Converter<ResponseBody, T> {
         private Gson gson;
@@ -54,6 +99,8 @@ public class ResponseConvert extends Converter.Factory {
             return gson.fromJson(json, type);
         }
     }
+    
+    
 
     /**
      * 空列表的转换

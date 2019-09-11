@@ -42,6 +42,13 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0' // 必要依赖，解析json字符所用
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.1'
     //非必要依赖， log依赖，如果需要打印OkHttpLog需要添加
+
+    implementation 'jp.wasabeef:glide-transformations:2.0.2'
+    api 'com.huxq17.xrefreshview:xrefreshview:3.6.9'
+
+    // butterknife 
+    implementation 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
     
     
     
