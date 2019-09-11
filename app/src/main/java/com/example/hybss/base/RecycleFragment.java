@@ -15,7 +15,7 @@ import android.view.ViewGroup;
 
 import com.andview.refreshview.XRefreshView;
 import com.example.hybss.viewhelper.XRefreshTool;
-import com.example.hybss.viewhelper.recycler.BaseRecyclerViewAdapter;
+import com.example.hybss.widget.recycler.BaseRecyclerViewAdapter;
 import com.example.mvp_base_library.presenter.IPresenter;
 import com.example.mvp_base_library.view.IView;
 
