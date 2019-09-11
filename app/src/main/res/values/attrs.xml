@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="customtoolbar">
+        <attr name="left_src" format="reference" />
+
+        <attr name="title_color" format="color" />
+        <attr name="title_size" format="dimension" />
+        <attr name="title_text" format="string" />
+
+        <attr name="right_color" format="color" />
+        <attr name="right_size" format="dimension" />
+        <attr name="right_text" format="string" />
+        <attr name="right_bg" format="reference" />
+
+        <attr name="right_src" format="reference" />
+
+        <attr name="is_hidden_right" format="boolean" />
+        <attr name="is_hidden_right_image" format="boolean" />
+
+    </declare-styleable>
+</resources>

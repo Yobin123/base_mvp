@@ -10,4 +10,6 @@ public interface IModuleCallBack<T, E> {
     void onSuccess(T data); //成功的回调
 
     void onFailure(E error); //失败的回调
+
+    void onError(Throwable t); //出错的回调
 }
